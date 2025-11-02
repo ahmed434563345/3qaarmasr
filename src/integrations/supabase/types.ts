@@ -455,6 +455,36 @@ export type Database = {
         }
         Relationships: []
       }
+      seller_inquiries: {
+        Row: {
+          compound: string | null
+          created_at: string
+          id: string
+          location: string
+          name: string
+          phone: string
+          property_type: string
+        }
+        Insert: {
+          compound?: string | null
+          created_at?: string
+          id?: string
+          location: string
+          name: string
+          phone: string
+          property_type: string
+        }
+        Update: {
+          compound?: string | null
+          created_at?: string
+          id?: string
+          location?: string
+          name?: string
+          phone?: string
+          property_type?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

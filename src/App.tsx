@@ -27,6 +27,7 @@ import UserProfile from "./pages/UserProfile";
 import AddListingForm from "./components/vendor/AddListingForm";
 import EditListingPage from "./pages/EditListingPage";
 import AnalyticsDashboard from "./pages/AnalyticsDashboard";
+import SellPropertyPage from "./pages/SellPropertyPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -142,6 +143,11 @@ const App = () => {
                 <Route path="/analytics" element={
                   <Layout>
                     <AnalyticsDashboard />
+                  </Layout>
+                } />
+                <Route path="/sell-property" element={
+                  <Layout>
+                    <SellPropertyPage />
                   </Layout>
                 } />
                 <Route path="*" element={<NotFound />} />

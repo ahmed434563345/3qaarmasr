@@ -53,6 +53,13 @@ const Header = () => {
               <Building2 className="h-4 w-4" />
               <span>Properties</span>
             </Link>
+            <Link 
+              to="/sell-property" 
+              className="text-foreground/80 hover:text-primary transition-all duration-200 font-medium"
+              onClick={() => trackNavigation('Sell Property')}
+            >
+              Sell Property
+            </Link>
             {user && (
               <>
                 <Link 
@@ -157,6 +164,14 @@ const Header = () => {
               >
                 <Building2 className="h-4 w-4" />
                 <span>Properties</span>
+              </Link>
+              <Link
+                to="/sell-property"
+                className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Building2 className="h-4 w-4" />
+                <span>Sell Property</span>
               </Link>
               {user && (
                 <>
