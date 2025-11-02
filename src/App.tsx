@@ -22,6 +22,7 @@ import CityPage from "./pages/city/[city]";
 import MessagesPage from "./pages/MessagesPage";
 import ListingDetailPage from "./pages/ListingDetailPage";
 import LaunchDetailPage from "./pages/LaunchDetailPage";
+import CompoundDetailPage from "./pages/CompoundDetailPage";
 import UserProfile from "./pages/UserProfile";
 import AddListingForm from "./components/vendor/AddListingForm";
 import EditListingPage from "./pages/EditListingPage";
@@ -96,6 +97,11 @@ const App = () => {
                 <Route path="/launch/:slug" element={
                   <Layout>
                     <LaunchDetailPage />
+                  </Layout>
+                } />
+                <Route path="/compound/:slug" element={
+                  <Layout>
+                    <CompoundDetailPage />
                   </Layout>
                 } />
                 <Route path="/profile" element={

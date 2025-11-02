@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import AppointmentsView from '../components/admin/AppointmentsView';
 import AgentManagementView from '../components/admin/AgentManagementView';
 import LaunchesManagement from '../components/admin/LaunchesManagement';
+import CompoundsManagement from '../components/admin/CompoundsManagement';
 
 const AdminDashboard = () => {
   const { role } = useAuth();
@@ -354,7 +355,7 @@ const AdminDashboard = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-8">
+          <TabsList className="grid w-full grid-cols-9">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="agents">Agents</TabsTrigger>
             <TabsTrigger value="appointments">Appointments</TabsTrigger>
@@ -362,6 +363,7 @@ const AdminDashboard = () => {
             <TabsTrigger value="leads">Leads</TabsTrigger>
             <TabsTrigger value="listings">Listings</TabsTrigger>
             <TabsTrigger value="launches">Launches</TabsTrigger>
+            <TabsTrigger value="compounds">Compounds</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
           </TabsList>
 
@@ -700,6 +702,10 @@ const AdminDashboard = () => {
 
           <TabsContent value="launches">
             <LaunchesManagement />
+          </TabsContent>
+
+          <TabsContent value="compounds">
+            <CompoundsManagement />
           </TabsContent>
 
           <TabsContent value="analytics">
