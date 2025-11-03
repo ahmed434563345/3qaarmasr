@@ -348,7 +348,9 @@ export type Database = {
           amenities: string[] | null
           bathrooms: number
           bedrooms: number
+          categories: string[] | null
           city: string
+          compound_id: string | null
           created_at: string
           description: string
           expires_at: string | null
@@ -357,6 +359,7 @@ export type Database = {
           id: string
           images: string[]
           latitude: number | null
+          launch_id: string | null
           longitude: number | null
           lot_size: number | null
           price: number
@@ -376,7 +379,9 @@ export type Database = {
           amenities?: string[] | null
           bathrooms: number
           bedrooms: number
+          categories?: string[] | null
           city: string
+          compound_id?: string | null
           created_at?: string
           description: string
           expires_at?: string | null
@@ -385,6 +390,7 @@ export type Database = {
           id?: string
           images?: string[]
           latitude?: number | null
+          launch_id?: string | null
           longitude?: number | null
           lot_size?: number | null
           price: number
@@ -404,7 +410,9 @@ export type Database = {
           amenities?: string[] | null
           bathrooms?: number
           bedrooms?: number
+          categories?: string[] | null
           city?: string
+          compound_id?: string | null
           created_at?: string
           description?: string
           expires_at?: string | null
@@ -413,6 +421,7 @@ export type Database = {
           id?: string
           images?: string[]
           latitude?: number | null
+          launch_id?: string | null
           longitude?: number | null
           lot_size?: number | null
           price?: number
@@ -426,7 +435,22 @@ export type Database = {
           year_built?: number | null
           zip_code?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "properties_compound_id_fkey"
+            columns: ["compound_id"]
+            isOneToOne: false
+            referencedRelation: "compounds"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "properties_launch_id_fkey"
+            columns: ["launch_id"]
+            isOneToOne: false
+            referencedRelation: "launches"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       search_history: {
         Row: {
