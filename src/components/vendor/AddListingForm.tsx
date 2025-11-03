@@ -16,6 +16,8 @@ import { useAuth } from '@/lib/supabase/auth';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import LocationPicker from '@/components/map/LocationPicker';
+import { useCompounds } from '@/hooks/useCompounds';
+import { useLaunches } from '@/hooks/useLaunches';
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required").max(200, "Title must be less than 200 characters"),
@@ -28,6 +30,9 @@ const formSchema = z.object({
   bathrooms: z.coerce.number().int().min(0, "Bathrooms must be 0 or more"),
   squareFeet: z.coerce.number().positive("Square feet must be positive"),
   amenities: z.string().optional(),
+  compoundId: z.string().optional(),
+  launchId: z.string().optional(),
+  categories: z.string().optional(),
 });
 
 type ListingFormData = z.infer<typeof formSchema>;
@@ -42,6 +47,9 @@ const AddListingForm = () => {
   const [latitude, setLatitude] = useState<number>(31.2001);
   const [longitude, setLongitude] = useState<number>(29.9187);
   
+  const { data: compounds } = useCompounds();
+  const { data: launches } = useLaunches();
+  
   const form = useForm<ListingFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,6 +63,9 @@ const AddListingForm = () => {
       bathrooms: 1,
       squareFeet: 0,
       amenities: '',
+      compoundId: '',
+      launchId: '',
+      categories: '',
     }
   });
 
@@ -167,6 +178,10 @@ const AddListingForm = () => {
         ? data.amenities.split(',').map(a => a.trim()).filter(Boolean)
         : [];
 
+      const categoriesArray = data.categories
+        ? data.categories.split(',').map(c => c.trim()).filter(Boolean)
+        : [];
+
       // If admin, auto-approve the listing
       const listingStatus = role === 'admin' ? 'approved' : 'pending';
 
@@ -181,6 +196,9 @@ const AddListingForm = () => {
         bathrooms: data.bathrooms,
         square_feet: data.squareFeet,
         amenities: amenitiesArray,
+        categories: categoriesArray,
+        compound_id: data.compoundId || null,
+        launch_id: data.launchId || null,
         images: images,
         agent_id: user?.id || '',
         status: listingStatus as any,
@@ -338,6 +356,74 @@ const AddListingForm = () => {
                         ))}
                       </SelectContent>
                     </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="compoundId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Compound (Optional)</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select compound or leave empty" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="">None</SelectItem>
+                          {compounds?.map((compound) => (
+                            <SelectItem key={compound.id} value={compound.id}>
+                              {compound.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="launchId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Launch (Optional)</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select launch or leave empty" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="">None</SelectItem>
+                          {launches?.map((launch) => (
+                            <SelectItem key={launch.id} value={launch.id}>
+                              {launch.title}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <FormField
+                control={form.control}
+                name="categories"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Categories (comma-separated)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g. Luxury, Waterfront, Modern" {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
