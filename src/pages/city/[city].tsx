@@ -8,6 +8,9 @@ import LoadingCard from '@/components/common/LoadingCard';
 
 const CITIES = {
   'alexandria': 'Alexandria',
+  'cairo': 'Cairo',
+  'sahel': 'Sahel',
+  'ras-elhekma': 'Ras El Hekma',
   '6-october': '6th October',
   'maadi': 'Maadi',
   'marassi': 'Marassi',
