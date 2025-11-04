@@ -475,13 +475,13 @@ const ListingDetailPage = () => {
 
             {/* Message Agent Button */}
             {user && (
-              <div className="flex justify-center">
+              <div className="flex justify-center px-4">
                 <Button 
                   onClick={handleMessageAgent}
                   disabled={startingConversation}
-                  className="group relative flex items-center gap-2 h-12 px-8 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg text-base font-semibold transition-all"
+                  className="group relative flex items-center justify-center gap-3 w-full sm:w-auto h-14 sm:h-16 px-8 sm:px-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg text-lg sm:text-xl font-semibold transition-all hover:scale-105"
                 >
-                  <MessageSquare className="h-5 w-5" />
+                  <MessageSquare className="h-6 w-6 sm:h-7 sm:w-7" />
                   <span className="group-hover:hidden">
                     {startingConversation ? 'Starting...' : 'Message Agent'}
                   </span>
