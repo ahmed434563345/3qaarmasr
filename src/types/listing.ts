@@ -41,4 +41,6 @@ export interface PropertyListing extends Listing {
   lotSize?: number;
   garage?: number;
   amenities: string[];
+  compoundId?: string | null;
+  launchId?: string | null;
 }

@@ -6,7 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 const fetchListings = async (): Promise<PropertyListing[]> => {
   const { data, error } = await supabase
     .from('properties')
-    .select('*')
+    .select('*, compound_id, launch_id')
     .eq('status', 'approved')
     .order('created_at', { ascending: false });
 
@@ -44,13 +44,15 @@ const fetchListings = async (): Promise<PropertyListing[]> => {
     lotSize: property.lot_size,
     garage: property.garage,
     amenities: property.amenities || [],
+    compoundId: property.compound_id,
+    launchId: property.launch_id,
   }));
 };
 
 const fetchFeaturedListings = async (): Promise<PropertyListing[]> => {
   const { data, error } = await supabase
     .from('properties')
-    .select('*')
+    .select('*, compound_id, launch_id')
     .eq('status', 'approved')
     .eq('featured', true)
     .order('created_at', { ascending: false })
@@ -90,6 +92,8 @@ const fetchFeaturedListings = async (): Promise<PropertyListing[]> => {
     lotSize: property.lot_size,
     garage: property.garage,
     amenities: property.amenities || [],
+    compoundId: property.compound_id,
+    launchId: property.launch_id,
   }));
 };
 

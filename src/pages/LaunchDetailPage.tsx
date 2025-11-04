@@ -31,9 +31,9 @@ const LaunchDetailPage = () => {
     );
   }
 
-  // Filter properties by launch location (simplified - you may want to add a launch_id to properties table)
+  // Filter properties by launch_id
   const launchProperties = properties?.filter(p => 
-    p.location.city.toLowerCase().includes(launch.location.toLowerCase())
+    p.launchId === launch.id
   ) || [];
 
   return (
