@@ -336,27 +336,16 @@ const ListingDetailPage = () => {
           </Button>
           <div className="flex items-center gap-2">
             {user && (
-              <>
-                <Button 
-                  onClick={() => {
-                    trackButtonClick('Book Appointment', 'Listing Detail');
-                    setIsBookingModalOpen(true);
-                  }}
-                  className="flex items-center gap-2 h-11 px-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg text-base font-semibold"
-                >
-                  <Calendar className="h-5 w-5" />
-                  Schedule Viewing
-                </Button>
-                <Button 
-                  onClick={handleMessageAgent}
-                  disabled={startingConversation}
-                  variant="outline"
-                  className="flex items-center gap-2 h-11 px-6"
-                >
-                  <MessageSquare className="h-5 w-5" />
-                  {startingConversation ? 'Starting...' : 'Message Agent'}
-                </Button>
-              </>
+              <Button 
+                onClick={() => {
+                  trackButtonClick('Book Appointment', 'Listing Detail');
+                  setIsBookingModalOpen(true);
+                }}
+                className="flex items-center gap-2 h-11 px-6 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg text-base font-semibold"
+              >
+                <Calendar className="h-5 w-5" />
+                Schedule Viewing
+              </Button>
             )}
             <Button 
               variant="outline" 
@@ -483,6 +472,25 @@ const ListingDetailPage = () => {
 
             {/* AI Features */}
             <AIFeatures listing={listing} />
+
+            {/* Message Agent Button */}
+            {user && (
+              <div className="flex justify-center">
+                <Button 
+                  onClick={handleMessageAgent}
+                  disabled={startingConversation}
+                  className="group relative flex items-center gap-2 h-12 px-8 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg text-base font-semibold transition-all"
+                >
+                  <MessageSquare className="h-5 w-5" />
+                  <span className="group-hover:hidden">
+                    {startingConversation ? 'Starting...' : 'Message Agent'}
+                  </span>
+                  <span className="hidden group-hover:inline">
+                    Chat Now for Info
+                  </span>
+                </Button>
+              </div>
+            )}
 
             {/* Map Section */}
             {listing.latitude && listing.longitude && (
