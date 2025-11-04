@@ -63,8 +63,8 @@ const AddListingForm = () => {
       bathrooms: 1,
       squareFeet: 0,
       amenities: '',
-      compoundId: '',
-      launchId: '',
+      compoundId: 'none',
+      launchId: 'none',
       categories: '',
     }
   });
@@ -197,8 +197,8 @@ const AddListingForm = () => {
         square_feet: data.squareFeet,
         amenities: amenitiesArray,
         categories: categoriesArray,
-        compound_id: data.compoundId || null,
-        launch_id: data.launchId || null,
+        compound_id: data.compoundId && data.compoundId !== 'none' ? data.compoundId : null,
+        launch_id: data.launchId && data.launchId !== 'none' ? data.launchId : null,
         images: images,
         agent_id: user?.id || '',
         status: listingStatus as any,
@@ -375,7 +375,7 @@ const AddListingForm = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="">None</SelectItem>
+                          <SelectItem value="none">None</SelectItem>
                           {compounds?.map((compound) => (
                             <SelectItem key={compound.id} value={compound.id}>
                               {compound.name}
@@ -401,7 +401,7 @@ const AddListingForm = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="">None</SelectItem>
+                          <SelectItem value="none">None</SelectItem>
                           {launches?.map((launch) => (
                             <SelectItem key={launch.id} value={launch.id}>
                               {launch.title}
