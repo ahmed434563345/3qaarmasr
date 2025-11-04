@@ -110,16 +110,33 @@ const PropertiesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative h-[500px] flex items-center justify-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop')`,
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+        </div>
+        <div className="relative z-10 text-center px-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+            Luxury Properties In Egypt
+          </h1>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
+
+        {/* Featured Properties Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Properties for Sale</h1>
-          <p className="text-gray-600">Find your perfect home from thousands of listings</p>
+          <h2 className="text-4xl font-bold text-foreground mb-2">Featured Properties</h2>
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-card rounded-lg shadow-sm p-6 mb-8 border border-border">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             <div className="lg:col-span-2">
               <Input
@@ -151,7 +168,7 @@ const PropertiesPage = () => {
                 <SelectItem value="1m+">1M+ EGP</SelectItem>
               </SelectContent>
             </Select>
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button>
               <Search className="h-4 w-4 mr-2" />
               Search
             </Button>
@@ -160,9 +177,9 @@ const PropertiesPage = () => {
 
         {/* Results */}
         <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-600">{filteredProperties.length} properties found</p>
+          <p className="text-muted-foreground">{filteredProperties.length} properties found</p>
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-600">Sort by:</span>
+            <span className="text-sm text-muted-foreground">Sort by:</span>
             <Select defaultValue="newest">
               <SelectTrigger className="w-32">
                 <SelectValue />
@@ -188,7 +205,7 @@ const PropertiesPage = () => {
         <div className="flex justify-center mt-12">
           <div className="flex space-x-2">
             <Button variant="outline" disabled>Previous</Button>
-            <Button className="bg-blue-600 hover:bg-blue-700">1</Button>
+            <Button>1</Button>
             <Button variant="outline">2</Button>
             <Button variant="outline">3</Button>
             <Button variant="outline">Next</Button>
