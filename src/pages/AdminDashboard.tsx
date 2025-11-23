@@ -329,24 +329,25 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex justify-between items-center mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-            <p className="text-muted-foreground">Manage your marketplace platform</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Admin Dashboard</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">Manage your marketplace platform</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <Button 
               variant="outline" 
               onClick={() => navigate('/analytics')}
-              className="flex items-center gap-2"
+              className="flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <BarChart3 className="h-4 w-4" />
-              Advanced Analytics
+              <span className="hidden sm:inline">Advanced Analytics</span>
+              <span className="sm:hidden">Analytics</span>
             </Button>
             <Button 
               onClick={() => navigate('/add-listing')}
-              className="flex items-center gap-2"
+              className="flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <Plus className="h-4 w-4" />
               Add Listing
@@ -355,17 +356,19 @@ const AdminDashboard = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-9">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="agents">Agents</TabsTrigger>
-            <TabsTrigger value="appointments">Appointments</TabsTrigger>
-            <TabsTrigger value="users">Users</TabsTrigger>
-            <TabsTrigger value="leads">Leads</TabsTrigger>
-            <TabsTrigger value="listings">Listings</TabsTrigger>
-            <TabsTrigger value="launches">Launches</TabsTrigger>
-            <TabsTrigger value="compounds">Compounds</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-          </TabsList>
+          <div className="overflow-x-auto -mx-4 px-4">
+            <TabsList className="inline-flex w-auto min-w-full sm:grid sm:w-full sm:grid-cols-5 lg:grid-cols-9">
+              <TabsTrigger value="overview" className="text-xs sm:text-sm whitespace-nowrap">Overview</TabsTrigger>
+              <TabsTrigger value="agents" className="text-xs sm:text-sm whitespace-nowrap">Agents</TabsTrigger>
+              <TabsTrigger value="appointments" className="text-xs sm:text-sm whitespace-nowrap">Appointments</TabsTrigger>
+              <TabsTrigger value="users" className="text-xs sm:text-sm whitespace-nowrap">Users</TabsTrigger>
+              <TabsTrigger value="leads" className="text-xs sm:text-sm whitespace-nowrap">Leads</TabsTrigger>
+              <TabsTrigger value="listings" className="text-xs sm:text-sm whitespace-nowrap">Listings</TabsTrigger>
+              <TabsTrigger value="launches" className="text-xs sm:text-sm whitespace-nowrap">Launches</TabsTrigger>
+              <TabsTrigger value="compounds" className="text-xs sm:text-sm whitespace-nowrap">Compounds</TabsTrigger>
+              <TabsTrigger value="analytics" className="text-xs sm:text-sm whitespace-nowrap">Analytics</TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="overview" className="space-y-6">
             {/* Stats Grid */}
@@ -411,11 +414,11 @@ const AdminDashboard = () => {
                             </p>
                           </div>
                         </div>
-                        <div className="flex space-x-2">
+                        <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="text-green-600 border-green-600"
+                            className="text-green-600 border-green-600 flex-1 sm:flex-none text-xs sm:text-sm"
                             onClick={() => handleApproveProperty(listing.id)}
                           >
                             <CheckCircle className="h-4 w-4 mr-1" />
@@ -424,13 +427,13 @@ const AdminDashboard = () => {
                           <Button 
                             size="sm" 
                             variant="outline" 
-                            className="text-red-600 border-red-600"
+                            className="text-red-600 border-red-600 flex-1 sm:flex-none text-xs sm:text-sm"
                             onClick={() => handleRejectProperty(listing.id)}
                           >
                             <XCircle className="h-4 w-4 mr-1" />
                             Reject
                           </Button>
-                          <Button size="sm" variant="outline" asChild>
+                          <Button size="sm" variant="outline" asChild className="flex-1 sm:flex-none text-xs sm:text-sm">
                             <Link to={`/listing/${listing.id}`}>
                               <Eye className="h-4 w-4 mr-1" />
                               Review
@@ -473,23 +476,23 @@ const AdminDashboard = () => {
                 ) : users.length === 0 ? (
                   <p className="text-muted-foreground">No users found</p>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <table className="w-full min-w-[600px]">
                       <thead>
                         <tr className="border-b">
-                          <th className="text-left p-2">Name</th>
-                          <th className="text-left p-2">Email</th>
-                          <th className="text-left p-2">Phone</th>
-                          <th className="text-left p-2">Joined</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Name</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Email</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Phone</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Joined</th>
                         </tr>
                       </thead>
                       <tbody>
                         {users.map((user) => (
                           <tr key={user.id} className="border-b hover:bg-muted/50">
-                            <td className="p-2">{user.name || 'N/A'}</td>
-                            <td className="p-2">{user.email}</td>
-                            <td className="p-2">{user.phone || 'N/A'}</td>
-                            <td className="p-2">{new Date(user.created_at).toLocaleDateString()}</td>
+                            <td className="p-2 text-xs sm:text-sm">{user.name || 'N/A'}</td>
+                            <td className="p-2 text-xs sm:text-sm">{user.email}</td>
+                            <td className="p-2 text-xs sm:text-sm">{user.phone || 'N/A'}</td>
+                            <td className="p-2 text-xs sm:text-sm">{new Date(user.created_at).toLocaleDateString()}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -512,25 +515,25 @@ const AdminDashboard = () => {
                 ) : leads.length === 0 ? (
                   <p className="text-muted-foreground">No leads yet</p>
                 ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <table className="w-full min-w-[600px]">
                       <thead>
                         <tr className="border-b">
-                          <th className="text-left p-2">Name</th>
-                          <th className="text-left p-2">Phone</th>
-                          <th className="text-left p-2">Location</th>
-                          <th className="text-left p-2">Budget</th>
-                          <th className="text-left p-2">Date</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Name</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Phone</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Location</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Budget</th>
+                          <th className="text-left p-2 text-xs sm:text-sm">Date</th>
                         </tr>
                       </thead>
                       <tbody>
                         {leads.map((lead) => (
                           <tr key={lead.id} className="border-b hover:bg-muted/50">
-                            <td className="p-2">{lead.name}</td>
-                            <td className="p-2">{lead.phone}</td>
-                            <td className="p-2">{lead.location}</td>
-                            <td className="p-2">{lead.budget ? `EGP ${lead.budget.toLocaleString()}` : 'Not specified'}</td>
-                            <td className="p-2">{new Date(lead.created_at).toLocaleDateString()}</td>
+                            <td className="p-2 text-xs sm:text-sm">{lead.name}</td>
+                            <td className="p-2 text-xs sm:text-sm">{lead.phone}</td>
+                            <td className="p-2 text-xs sm:text-sm">{lead.location}</td>
+                            <td className="p-2 text-xs sm:text-sm">{lead.budget ? `EGP ${lead.budget.toLocaleString()}` : 'Not specified'}</td>
+                            <td className="p-2 text-xs sm:text-sm">{new Date(lead.created_at).toLocaleDateString()}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -550,11 +553,12 @@ const AdminDashboard = () => {
               <CardContent>
                 <div className="space-y-4">
                   {/* Filter Tabs */}
-                  <div className="flex gap-2 border-b pb-4">
+                  <div className="flex flex-wrap gap-2 border-b pb-4">
                     <Button
                       variant={listingsFilter === 'all' ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => setListingsFilter('all')}
+                      className="text-xs sm:text-sm"
                     >
                       All ({allListings.length})
                     </Button>
@@ -562,6 +566,7 @@ const AdminDashboard = () => {
                       variant={listingsFilter === 'pending' ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => setListingsFilter('pending')}
+                      className="text-xs sm:text-sm"
                     >
                       Pending ({allListings.filter(l => l.status === 'pending').length})
                     </Button>
@@ -569,6 +574,7 @@ const AdminDashboard = () => {
                       variant={listingsFilter === 'approved' ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => setListingsFilter('approved')}
+                      className="text-xs sm:text-sm"
                     >
                       Approved ({allListings.filter(l => l.status === 'approved').length})
                     </Button>
@@ -576,6 +582,7 @@ const AdminDashboard = () => {
                       variant={listingsFilter === 'rejected' ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => setListingsFilter('rejected')}
+                      className="text-xs sm:text-sm"
                     >
                       Rejected ({allListings.filter(l => l.status === 'rejected').length})
                     </Button>
@@ -619,11 +626,12 @@ const AdminDashboard = () => {
                                 </div>
                               </div>
                             </div>
-                            <div className="flex gap-2 flex-wrap">
+                            <div className="flex gap-2 flex-wrap w-full sm:w-auto">
                               <Button 
                                 size="sm" 
                                 variant="outline"
                                 onClick={() => navigate(`/edit-listing/${listing.id}`)}
+                                className="flex-1 sm:flex-none text-xs sm:text-sm"
                               >
                                 <Edit className="h-4 w-4 mr-1" />
                                 Edit
@@ -633,7 +641,7 @@ const AdminDashboard = () => {
                                   <Button 
                                     size="sm" 
                                     variant="outline" 
-                                    className="text-green-600 border-green-600 hover:bg-green-50"
+                                    className="text-green-600 border-green-600 hover:bg-green-50 flex-1 sm:flex-none text-xs sm:text-sm"
                                     onClick={() => handleApproveProperty(listing.id)}
                                   >
                                     <CheckCircle className="h-4 w-4 mr-1" />
@@ -642,7 +650,7 @@ const AdminDashboard = () => {
                                   <Button 
                                     size="sm" 
                                     variant="outline" 
-                                    className="text-red-600 border-red-600 hover:bg-red-50"
+                                    className="text-red-600 border-red-600 hover:bg-red-50 flex-1 sm:flex-none text-xs sm:text-sm"
                                     onClick={() => handleRejectProperty(listing.id)}
                                   >
                                     <XCircle className="h-4 w-4 mr-1" />
@@ -654,7 +662,7 @@ const AdminDashboard = () => {
                                 <Button 
                                   size="sm" 
                                   variant="outline" 
-                                  className="text-red-600 border-red-600 hover:bg-red-50"
+                                  className="text-red-600 border-red-600 hover:bg-red-50 flex-1 sm:flex-none text-xs sm:text-sm"
                                   onClick={() => handleRejectProperty(listing.id)}
                                 >
                                   <XCircle className="h-4 w-4 mr-1" />
@@ -665,14 +673,14 @@ const AdminDashboard = () => {
                                 <Button 
                                   size="sm" 
                                   variant="outline" 
-                                  className="text-green-600 border-green-600 hover:bg-green-50"
+                                  className="text-green-600 border-green-600 hover:bg-green-50 flex-1 sm:flex-none text-xs sm:text-sm"
                                   onClick={() => handleApproveProperty(listing.id)}
                                 >
                                   <CheckCircle className="h-4 w-4 mr-1" />
                                   Approve
                                 </Button>
                               )}
-                              <Button size="sm" variant="outline" asChild>
+                              <Button size="sm" variant="outline" asChild className="flex-1 sm:flex-none text-xs sm:text-sm">
                                 <Link to={`/property/${listing.id}`}>
                                   <Eye className="h-4 w-4 mr-1" />
                                   View
