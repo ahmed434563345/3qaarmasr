@@ -40,7 +40,7 @@ const Header = () => {
             <div className="bg-gradient-to-br from-primary to-primary/80 p-2 rounded-xl group-hover:scale-105 transition-all duration-200 shadow-lg">
               <Building2 className="h-6 w-6 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Drake Estate</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">3aqark</span>
           </Link>
 
           {/* Navigation - Desktop */}

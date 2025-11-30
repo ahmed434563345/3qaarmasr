@@ -12,8 +12,8 @@ serve(async (req) => {
   }
 
   try {
-    const { query, userId } = await req.json();
-    console.log('AI Search request:', { query, userId });
+    const { query, userId, totalListings } = await req.json();
+    console.log('AI Search request:', { query, userId, totalListings });
 
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
     if (!LOVABLE_API_KEY) throw new Error('LOVABLE_API_KEY not configured');
@@ -30,14 +30,15 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: `You are a real estate search assistant. Parse the user's natural language query and extract:
-- Property type (house, apartment, condo, townhouse, land)
+            content: `You are a real estate search assistant for 3aqark, focusing on Alexandria properties. Parse the user's natural language query and extract:
+- Property type (house, apartment, condo, townhouse, land, villa, studio)
 - Price range (min and max)
 - Number of bedrooms
 - Number of bathrooms
-- Location (city, state)
+- Location (city, area in Alexandria: Miami, Smouha, Sidi Gaber, Stanley, Glim, San Stefano, Montazah, Mandara, Agami, Sidi Beshr, Sporting, Roushdy, Cleopatra, Louran, Shatby)
 - Special features or amenities
 
+Current listing count: ${totalListings || 0} properties available.
 Return the extracted information in a structured format with search suggestions.`
           },
           {

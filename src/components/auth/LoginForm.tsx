@@ -88,7 +88,7 @@ const LoginForm = () => {
 
             <div className="mb-8">
               <h1 className="text-4xl font-bold mb-2 gradient-text">
-                Welcome to Drake Estate
+                Welcome to 3aqark
               </h1>
               <p className="text-muted-foreground">
                 Sign in to access your account

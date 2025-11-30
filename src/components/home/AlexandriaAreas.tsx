@@ -136,7 +136,7 @@ const AlexandriaAreas = () => {
             <Card
               key={area.id}
               className="group hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 overflow-hidden"
-              onClick={() => navigate(`/properties?city=alexandria&area=${area.id}`)}
+              onClick={() => navigate(`/area/${area.id}`)}
             >
               <div className="relative h-40 overflow-hidden">
                 <img
@@ -170,7 +170,7 @@ const AlexandriaAreas = () => {
                 <CarouselItem key={area.id} className="pl-2 basis-4/5">
                   <Card
                     className="group hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
-                    onClick={() => navigate(`/properties?city=alexandria&area=${area.id}`)}
+                    onClick={() => navigate(`/area/${area.id}`)}
                   >
                     <div className="relative h-32 overflow-hidden">
                       <img

@@ -95,7 +95,7 @@ const RegisterForm = () => {
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">Create account</CardTitle>
             <CardDescription className="text-center">
-              Join our marketplace to start buying or selling
+              Join 3aqark to start buying or selling properties
             </CardDescription>
           </CardHeader>
           <CardContent>

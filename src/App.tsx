@@ -19,6 +19,7 @@ import AgentDashboard from "./pages/AgentDashboard";
 import BuyerDashboard from "./pages/BuyerDashboard";
 import PropertiesPage from "./pages/PropertiesPage";
 import CityPage from "./pages/city/[city]";
+import AreaPage from "./pages/AreaPage";
 import MessagesPage from "./pages/MessagesPage";
 import ListingDetailPage from "./pages/ListingDetailPage";
 import LaunchDetailPage from "./pages/LaunchDetailPage";
@@ -83,6 +84,11 @@ const App = () => {
                 <Route path="/city/:city" element={
                   <Layout>
                     <CityPage />
+                  </Layout>
+                } />
+                <Route path="/area/:area" element={
+                  <Layout>
+                    <AreaPage />
                   </Layout>
                 } />
                 <Route path="/listing/:id" element={
