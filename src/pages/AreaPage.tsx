@@ -68,7 +68,7 @@ const AreaPage = () => {
         .from('properties')
         .select('*')
         .eq('status', 'approved')
-        .eq('city', areaName)
+        .eq('city', area)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
