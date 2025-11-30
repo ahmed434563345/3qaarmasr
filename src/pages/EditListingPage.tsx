@@ -30,7 +30,34 @@ const formSchema = z.object({
 
 type ListingFormData = z.infer<typeof formSchema>;
 
-const cities = ['alexandria', 'cairo', 'giza', 'aswan', 'luxor', 'hurghada', 'sharm el sheikh'];
+const cities = [
+  'alexandria',
+  'miami',
+  'smouha',
+  'sidi-gaber',
+  'stanley',
+  'glim',
+  'san-stefano',
+  'montazah',
+  'mandara',
+  'agami',
+  'sidi-beshr',
+  'sporting',
+  'roushdy',
+  'cleopatra',
+  'louran',
+  'shatby',
+  '6 october',
+  'maadi',
+  'marassi',
+  'elmohandisen',
+  'cairo',
+  'giza',
+  'aswan',
+  'luxor',
+  'hurghada',
+  'sharm el sheikh'
+];
 
 const EditListingPage = () => {
   const { toast } = useToast();
