@@ -47,8 +47,18 @@ const AISearch: React.FC<AISearchProps> = ({ onSearch }) => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       
+      // Fetch latest listings count for context
+      const { count } = await supabase
+        .from('properties')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'approved');
+      
       const { data, error } = await supabase.functions.invoke('ai-search', {
-        body: { query: userQuery, userId: user?.id }
+        body: { 
+          query: userQuery, 
+          userId: user?.id,
+          totalListings: count || 0
+        }
       });
 
       if (error) {
@@ -121,10 +131,10 @@ const AISearch: React.FC<AISearchProps> = ({ onSearch }) => {
   };
 
   const quickSearches = [
-    "Modern apartments under $500k",
-    "3 bedroom houses in Miami",
-    "Electric cars under $40k",
-    "Luxury condos with pool"
+    "3 bedroom apartment in Miami",
+    "Villa with pool in San Stefano",
+    "Studio in Smouha under 2M EGP",
+    "Luxury apartment in Stanley"
   ];
 
   return (

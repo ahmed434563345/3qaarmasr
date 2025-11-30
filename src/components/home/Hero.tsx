@@ -37,7 +37,7 @@ const Hero = () => {
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-white/90 font-medium">
-            Earth's Most Followed and Subscribed to Real Estate Brand
+            Find Your Perfect Property in Alexandria with 3aqark
           </p>
           
           {/* Search Bar */}
